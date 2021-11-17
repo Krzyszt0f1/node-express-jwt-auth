@@ -1,5 +1,6 @@
 [
   {
-    "dummySeed": "dummy Seed"
+    "email": "john@doe.com",
+    "password": "secret1234"
   }
 ]
