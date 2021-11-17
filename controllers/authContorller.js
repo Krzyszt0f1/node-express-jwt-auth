@@ -37,8 +37,7 @@ module.exports.signup_post = async (req, res) => {
     } catch(err) {
         const errors = handleErrors(err);
         res.status(409).json({ errors });
-    } 
-    res.send('new signup');
+    }
 }
 
 module.exports.login_post = (req, res) => {

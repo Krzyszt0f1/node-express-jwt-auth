@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
+const bcrypt = require('bcrypt');
 
 // the second values in the arrays of required
 // are for creating custom error messages 
@@ -20,6 +21,13 @@ const userSchema = new mongoose.Schema({
         minlength: [6, 'Password has to be at least 6 characters long']
     }
 });
+
+// fire function before doc saved to db
+userSchema.pre('save', async function (next) {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+})
 
 const User = mongoose.model('user', userSchema);
 
