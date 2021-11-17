@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27018:27017
+
+  mongo_seed:
+    image: mongo
+    links:
+      - mongodb
+    volumes:
+      - ./mongo-seed:/mongo-seed
+    command:
+      /mongo-seed/import.sh
+    
